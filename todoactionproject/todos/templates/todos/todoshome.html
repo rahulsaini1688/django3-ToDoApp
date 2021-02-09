@@ -1,0 +1,40 @@
+
+{% extends 'todos/base.html' %}
+
+{% block content %}
+
+	<div class="page-header" >
+        <h1>Welcome to the To-DO Actions application. </h1>
+        <p>(Free to use!)</p>	
+    </div>
+
+    <br>
+	<br>
+	{% if user.is_authenticated %}
+		<form action = "{% url 'currenttasks' %}" >
+			<p>See your current TO DO actions list here : 
+				<input type = "submit" value = "Current TO DOs"/>
+				<br>
+			</p>
+		</form>
+		<form action = "{% url 'createtodos' %}" >
+			<p>Click here if you wish to create a new TO DO action item : 
+				<input type = "submit" value = "Create TO DOs"/>
+			</p>
+		</form>
+
+		
+		
+
+
+	{% else %}
+		<form method = 'POST'>
+			{% csrf_token %}
+			<a href="{% url 'signupuser' %}">Please sign up here to get started</a>
+			<br>
+			<a href="{% url 'loginuser' %}">Please login here to continue</a>
+		</form>
+	{% endif %}
+
+
+{% endblock %}

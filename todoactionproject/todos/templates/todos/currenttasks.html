@@ -1,0 +1,39 @@
+{% extends 'todos/base.html' %}
+
+
+{% block content %}
+
+  <p> 
+    You have below actions as currently open ToDo!(Important one's in bold)
+  </p> 
+  <ul>
+
+    {% for currenttask in Current_tasks %}
+      <form >
+        <li> 
+          <a href = "{% url 'viewtodos' currenttask.id %}" type = "submit">
+            {% if currenttask.important %} <b> {% endif %} 
+            Title: {{ currenttask.title }} 
+            {% if currenttask.important %} </b> {% endif %} 
+            {% if currenttask.memo %} - Memo: {{ currenttask.memo }} {% endif %} 
+          </a>
+        </li>
+      </form>
+        
+    {% endfor %}
+  </ul>
+  
+  <br>
+  <form action = "{% url 'createtodos' %}">
+    <p>Click here if you wish to create a new TO DO action item:</p>
+    <input type = "submit" value = "Create a new TO DO"/>
+  </form>
+
+  <br>
+  <br>
+  
+
+{% endblock %}
+
+
+

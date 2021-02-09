@@ -1,0 +1,32 @@
+{% extends 'todos/base.html' %}
+
+
+{% block content %}
+
+	<p>
+		You have already completed below tasks!
+	</p>
+
+	<ul>
+		{% for completed_task in completed_tasks %}
+			<form >
+		        <li> 
+		          <a href = "{% url 'viewtodos' completed_task.id %}" type = "submit">
+		            {% if completed_task.important %} <b> {% endif %} 
+		            Title: {{ completed_task.title }} 
+		            {% if completed_task.important %} </b> {% endif %} 
+		            {% if completed_task.memo %} - Memo: {{ completed_task.memo }} {% endif %} 
+		             ; Date Completed: {{ completed_task.date_completed|date:'M j Y H:i' }}
+		          </a>
+		        </li>
+	      </form>
+
+	    {% endfor %}
+	</ul>
+
+
+
+
+
+
+{% endblock %}
